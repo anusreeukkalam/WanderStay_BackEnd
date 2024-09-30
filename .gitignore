@@ -1,0 +1,13 @@
+# Dependency directories
+node_modules/
+
+# Uploads (large files or user-generated content)
+uploads/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+npm-debug.log*
+yarn-debug.log*
