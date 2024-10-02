@@ -74,7 +74,7 @@ app.post('/login',async (req,res)=>{
       id:userDoc._id
     },jwtSecret,{},(err,token)=>{
      if(err) {
-         res.status(500).json({'Internal Server Error'});
+         res.status(500).json({message: 'Internal Server Error'});
          throw err;
      }
      res.cookie('token',token).json(userDoc);
