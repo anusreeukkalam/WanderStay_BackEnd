@@ -77,7 +77,11 @@ app.post('/login',async (req,res)=>{
          res.status(500).json({message: 'Internal Server Error'});
          throw err;
      }
-     res.cookie('token',token).json(userDoc);
+     res.cookie('token',token,{
+         httpOnly: true,
+         secure: process.env.NODE_ENV === 'production', // Only secure in production
+         sameSite: 'None',
+     }).json(userDoc);
      });
      }else{
      res.status(422).json('Invalid Password')
