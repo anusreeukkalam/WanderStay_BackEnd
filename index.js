@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use('/uploads',express.static(__dirname+'/uploads'));
 app.use(cors({
     credentials:true,
-    origin:'http://localhost:5173', //specifies what kind of is able to communicate with our api
+    origin:'https://wanderstay-frontend-tvgv.onrender.com', //specifies what kind of is able to communicate with our api
 }));
 
 mongoose.connect(process.env.MONGO_URL,{
@@ -105,13 +105,14 @@ app.post('/logout', (req,res)=>{
 });
 
 app.post('/upload-by-link', async (req,res)=>{
- const {link}=req.body; 
+ /*const {link}=req.body; 
  const newName='photo'+Date.now()+'.jpg';
  await imageDownloader.image({
   url:link,
   dest:__dirname+'/uploads/'+newName,
  })
-  res.json(newName);
+  res.json(newName);*/
+    res.json(link);
 });
 
 const photosMiddleware=multer({dest:'uploads/'});
