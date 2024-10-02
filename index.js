@@ -73,16 +73,19 @@ app.post('/login',async (req,res)=>{
       email:userDoc.email,
       id:userDoc._id
     },jwtSecret,{},(err,token)=>{
-     if(err) throw err;
+     if(err) {
+         res.status(500).json({'Internal Server Error'});
+         throw err;
+     }
      res.cookie('token',token).json(userDoc);
      });
      }else{
-     res.status(422).json('password not ok')
+     res.status(422).json('Invalid Password')
      }
   }
   else
    {
-    res.json('not found');
+    res.status(404).json('User not found');
    }
 });
 
