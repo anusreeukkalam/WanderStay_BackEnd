@@ -78,7 +78,7 @@ app.post('/login', async (req, res) => {
         }
         res.cookie('token', token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production', // Only secure in production
+          secure: true,
           sameSite: 'None',
         }).json(userDoc);
       });
@@ -108,7 +108,7 @@ app.get('/profile', (req, res) => {
 app.post('/logout', (req, res) => {
   res.cookie('token', '', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: true,
     sameSite: 'None',
     expires: new Date(0)
   }).json(true);
