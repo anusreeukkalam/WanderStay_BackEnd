@@ -177,7 +177,7 @@ app.get('/user-places', (req, res) => {
 app.get('/places/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const place = await Place.findById(id);
+    const place = await Place.findById(id).populate('owner', 'name');
     if (!place) {
       return res.status(404).json({ error: 'place not found' });
     }
