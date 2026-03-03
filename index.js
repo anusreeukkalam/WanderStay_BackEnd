@@ -106,7 +106,12 @@ app.get('/profile', (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
-  res.cookie('token', '').json(true);
+  res.cookie('token', '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'None',
+    expires: new Date(0)
+  }).json(true);
 });
 
 app.post('/upload-by-link', async (req, res) => {
